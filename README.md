@@ -4,9 +4,7 @@ Professional portfolio website built with Next.js and Tailwind CSS, showcasing t
 
 ## 🚀 Live Demo
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_DEPLOY_ID/deploy-status)](https://your-site-name.netlify.app)
-
-**Live URL:** [https://ardhita-portfolio.netlify.app](https://ardhita-portfolio.netlify.app)
+**Live URL:** [https://ardhita-portfolio.netlify.app](https://ardhita-portfolio.netlify.app/)
 
 ## ✨ Features
 
