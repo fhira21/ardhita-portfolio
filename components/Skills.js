@@ -1,12 +1,12 @@
 export default function Skills() {
   const skills = [
     "Good communication and interpersonal skill",
-    "Good Negotiate", 
+    "Good Negotiate",
     "Fluent English and Indonesian",
-    "Database Management",
-    "Adobe Creative Suite",
-    "ORACLE Database",
-    "SAP ERP System",
+    "Database",
+    "Adobe",
+    "ORACLE",
+    "SAP",
     "Microsoft Office (Word, Excel, PowerPoint)"
   ];
 
