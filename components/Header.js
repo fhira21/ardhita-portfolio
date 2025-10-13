@@ -31,7 +31,7 @@ export default function Header() {
             
             <p className="text-lg mb-8 text-blue-50 max-w-lg leading-relaxed">
               With over 10 years of experience in sales strategy, client relationship management, 
-              and customer service excellence across multiple industries.
+              and customer service excellence across multiple company’s.
             </p>
             
             {/* CTA Buttons */}
