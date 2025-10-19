@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Contact() {
   const [message, setMessage] = useState('')
@@ -11,8 +12,8 @@ export default function Contact() {
     {
       icon: '📧',
       title: 'Email',
-      value: 'setyaningrumardhita@gmail.com',
-      link: 'mailto:setyaningrumardhita@gmail.com',
+      value: 'ardhitasetyaningrum88@gmail.com',
+      link: 'mailto:ardhitasetyaningrum88@gmail.com',
       description: 'Email saya kapan saja'
     },
     {
@@ -25,7 +26,7 @@ export default function Contact() {
   ]
 
   const sendEmail = () => {
-    const mailtoLink = `mailto:setyaningrumardhita@gmail.com?subject=${encodeURIComponent(subject || 'Message from Portfolio')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`)}`
+    const mailtoLink = `mailto:ardhitasetyaningrum88@gmail.com?subject=${encodeURIComponent(subject || 'Message from Portfolio')}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`)}`
     window.location.href = mailtoLink
   }
 
@@ -38,27 +39,41 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Tertarik bekerja sama? Mari berdiskusi tentang bagaimana saya bisa membantu mencapai target penjualan Anda.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* Contact Information */}
-            <div>
+
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               <h3 className="text-2xl font-bold mb-8">Contact Info</h3>
-              
               <div className="space-y-6">
                 {contactInfo.map((method, index) => (
-                  <a
+                  <motion.a
                     key={index}
                     href={method.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
                     className="flex items-start gap-4 p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 group hover:shadow-lg"
                   >
                     <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
@@ -69,24 +84,35 @@ export default function Contact() {
                       <p className="text-gray-300 text-lg mt-1">{method.value}</p>
                       <p className="text-sm text-gray-400 mt-2">{method.description}</p>
                     </div>
-                  </a>
+                  </motion.a>
                 ))}
               </div>
 
-              {/* Quick Response Info */}
-              <div className="mt-8 p-6 bg-blue-600/20 rounded-xl border border-blue-500/30">
+              <motion.div
+                className="mt-8 p-6 bg-blue-600/20 rounded-xl border border-blue-500/30"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
                 <h4 className="font-semibold text-lg mb-2">⚡ Quick Response</h4>
                 <p className="text-blue-200 text-sm">
                   Biasanya merespons dalam 1-2 jam selama jam kerja. Jangan ragu untuk menghubungi!
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Contact Form */}
-            <div className="bg-gray-800 rounded-2xl p-8 shadow-xl">
+            <motion.div
+              className="bg-gray-800 rounded-2xl p-8 shadow-xl"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               <h3 className="text-2xl font-bold mb-6">Send Message</h3>
-              
               <div className="space-y-6">
+                
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
@@ -109,7 +135,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Subject</label>
                   <input 
@@ -120,7 +146,7 @@ export default function Contact() {
                     placeholder="Pembicaraan project"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
                   <textarea 
@@ -132,33 +158,37 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
-                {/* Send Options */}
+                {/* Buttons */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <button 
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={sendEmail}
                     disabled={!message}
-                    className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg transition-all duration-300 font-semibold hover:shadow-lg disabled:hover:shadow-none"
+                    className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg transition-all duration-300 font-semibold hover:shadow-lg"
                   >
                     <span>📧</span>
                     Send via Email
-                  </button>
-                  
-                  <button 
+                  </motion.button>
+
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={sendWhatsApp}
                     disabled={!message}
-                    className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg transition-all duration-300 font-semibold hover:shadow-lg disabled:hover:shadow-none"
+                    className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white py-4 px-6 rounded-lg transition-all duration-300 font-semibold hover:shadow-lg"
                   >
                     <span>💬</span>
                     Send via WhatsApp
-                  </button>
+                  </motion.button>
                 </div>
 
-                {/* Quick Action Buttons */}
+                {/* Quick Contact Buttons */}
                 <div className="pt-4 border-t border-gray-700">
                   <p className="text-sm text-gray-400 mb-3 text-center">Atau hubungi langsung:</p>
                   <div className="grid grid-cols-2 gap-3">
                     <a
-                      href="mailto:setyaningrumardhita@gmail.com"
+                      href="mailto:ardhitasetyaningrum88@gmail.com"
                       className="bg-gray-700 hover:bg-gray-600 text-white py-3 px-4 rounded-lg transition-all duration-300 text-center font-medium text-sm"
                     >
                       📧 Email Now
@@ -174,16 +204,22 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-8 border-t border-gray-700 text-center">
+        <motion.div 
+          className="mt-16 pt-8 border-t border-gray-700 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <p className="text-gray-400">
             © {new Date().getFullYear()} Ardhita Setyaningrum. All rights reserved.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

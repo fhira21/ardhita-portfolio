@@ -1,3 +1,6 @@
+'use client'
+import { motion } from "framer-motion"
+
 export default function Experience() {
   const experiences = [
     {
@@ -18,7 +21,7 @@ export default function Experience() {
       title: "SALES EXECUTIVE",
       company: "(PT SUKANDA DJAYA/ DIAMOND FOOD INDONESIA Tbk",
       period: "2024",
-      icon: "🎯",
+      icon: "💼",
       responsibilities: [
         "Identify and understand customer needs.",
         "Present, promote, and sell products or services.",
@@ -35,7 +38,7 @@ export default function Experience() {
       title: "CUSTOMER SERVICE & ADMIN SUPPORT SALES",
       company: "PT SUKANDA DJAYA/ DIAMOND FOOD INDONESIA Tbk",
       period: "2014-2024",
-      icon: "🎯",
+      icon: "📞",
       responsibilities: [
         "Dealing with customers order by phone (call center), live chat or email from a contact center",
         "Finding relevant information on the system.",
@@ -47,7 +50,7 @@ export default function Experience() {
       title: "HRD STAFF",
       company: "PT. OHSUNG ELECTRONIC INDONESIA",
       period: "2012-2013",
-      icon: "🎯",
+      icon: "👩‍💼",
       responsibilities: [
         "Support the development and implementation of HR initiatives and systems",
         "Create and implement effective onboarding plans",
@@ -58,7 +61,7 @@ export default function Experience() {
       title: "COLLECTION ADMINISTRATOR SUPPORT",
       company: "SINARMAS MULTIFINANCE",
       period: "2011-2012",
-      icon: "🎯",
+      icon: "📊",
       responsibilities: [
         "Organizing and keeping track of customer's outstanding debt accounts, contacting debtors to learn more about",
         "their payment status and negotiating payments and payment plans with customers.",
@@ -68,7 +71,7 @@ export default function Experience() {
       title: "FRONT LINER",
       company: "PRAMESTHI SURAKARTA HOTEL",
       period: "2011",
-      icon: "🎯",
+      icon: "🏨",
       responsibilities: [
         "Greet guests as they arrive at a hotel",
         "Check guests in and out, and give them their room keys.",
@@ -78,37 +81,45 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-gray-50">
+    <section id="experience" className="py-20 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Work Experience
-          </h2>
+        {/* Header */}
+        <div className="text-center mb-16 relative z-10">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">Work Experience</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             With over 10 years of experience in sales and customer service
-            across various industries
+            across various company's
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {experiences.map((exp, index) => (
+        {/* Timeline - Desktop */}
+        <div className="relative hidden lg:block max-w-6xl mx-auto before:absolute before:top-0 before:bottom-0 before:left-1/2 before:w-1 before:bg-blue-200 before:rounded-full">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className={`relative flex flex-col lg:flex-row items-center mb-12 ${
+                index % 2 === 0 ? "lg:flex-row-reverse" : ""
+              }`}
+            >
+              {/* Dot */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-md z-10"></div>
+
+              {/* Card */}
               <div
-                key={index}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100 hover:border-blue-200 group"
+                className={`w-full lg:w-[45%] bg-white border border-gray-200 rounded-2xl p-8 shadow-md hover:shadow-xl hover:border-blue-300 transition-all duration-300 ${
+                  index % 2 === 0 ? "lg:ml-auto" : "lg:mr-auto"
+                }`}
               >
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                      {exp.icon}
-                    </div>
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="text-3xl">{exp.icon}</div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
-                        {exp.title}
-                      </h3>
-                      <p className="text-blue-600 font-semibold">
-                        {exp.company}
-                      </p>
+                      <h3 className="text-xl font-bold text-gray-800">{exp.title}</h3>
+                      <p className="text-blue-600 font-semibold">{exp.company}</p>
                     </div>
                   </div>
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
@@ -118,18 +129,50 @@ export default function Experience() {
 
                 <ul className="space-y-3">
                   {exp.responsibilities.map((resp, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-3 text-gray-600"
-                    >
+                    <li key={idx} className="flex items-start gap-3 text-gray-600">
                       <span className="text-green-500 mt-1">✓</span>
-                      {resp}
+                      <span>{resp}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile / Tablet Layout */}
+        <div className="lg:hidden grid grid-cols-1 gap-8">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-lg hover:border-blue-200 transition-all duration-300"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="text-2xl">{exp.icon}</div>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-800">{exp.title}</h3>
+                    <p className="text-blue-600 font-semibold text-sm">{exp.company}</p>
+                  </div>
+                </div>
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                  {exp.period}
+                </span>
+              </div>
+              <ul className="space-y-2">
+                {exp.responsibilities.map((resp, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
+                    <span className="text-green-500 mt-1">✓</span>
+                    <span>{resp}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
